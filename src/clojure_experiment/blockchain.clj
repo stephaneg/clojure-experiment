@@ -13,10 +13,8 @@
 ; root block chain
 (defn init-chain 
   [block]
- (let [chain ()]
-  (cons chain  block)
+    (conj '()  block)
   )
- )
 
 
 
@@ -40,3 +38,9 @@
   (conj chain block)
 
   )
+
+
+; run code
+(def chain (init-chain block))
+(get-chain-current-idx chain)
+
