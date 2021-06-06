@@ -11,20 +11,23 @@
             :previous_hash "2cfgghdfdfdfd" })
 
 ; root block chain
-(defn init-chain 
-  [block]
-    (conj '()  block)
+; structure of a chain :
+; :txs [ ] : transactions
+; :blocks ( ) : list of blocks
+(defn init-chain
+  ([] {:txs [], :blocks '() }) 
+  ([block] { :txs [], :blocks (list (eval block))})
   )
 
-
-
+; return the current index of the chain
 (defn get-chain-current-idx 
   [chain]
-  (-> (last chain)
+  (-> chain :blocks
+      last 
       :index)
   )
 
-; create blocki
+; create block
 ; timestamp : System/currentTimeMillis
 (defn create-block
   [index]
@@ -39,8 +42,14 @@
 
   )
 
+; add transaction function
+;(defn add-tx
+;  [chain sender recipient amount]
+;  (
 
 ; run code
 (def chain (init-chain block))
+;(def chain (init-chain))
+chain
 (get-chain-current-idx chain)
 
